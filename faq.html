@@ -1,0 +1,89 @@
+<script src="//code.jquery.com/jquery-1.11.3.min.js"></script> <!-- chama jquery -->
+
+<!-- css interno opcional, cores e estilos de gosto -->
+
+<style>
+    .faq li { padding: 20px; }
+
+    .arr {
+        height: 45px;
+        width: 45px;
+    }
+    
+    
+    .faq li.q {
+      background: #4FC2E;
+      font-weight: bold;
+      font-size: 120%;
+      border-bottom: 1px #ddd solid;
+      cursor: pointer;
+    }
+
+    .faq li.a {
+      background: #3BB0D6;
+      display: none;
+      color:#fff;
+    }
+    
+    .rotate {
+      -moz-transform: rotate(90deg);
+      -webkit-transform: rotate(90deg);
+      transform: rotate(90deg);
+}
+</style>
+
+<!-- html -->
+
+<ul class="faq">
+
+  <li class="q">
+    <img class="arr" src="images/arrows.png"> 
+    perguntas
+  </li>
+  <li class="a">Resp</li>
+  
+  <li class="q">
+    <img class="arr"  src="images/arrows.png"> 
+     perguntas
+  </li>
+    <li class="a">Resp</li>
+    
+  <li class="q">
+    <img class="arr"  src="images/arrows.png"> 
+     perguntas
+  </li>
+    <li class="a">Resp</li>
+
+</ul>
+
+<script>
+
+var action = 'click'; // ação
+var speed = "100"; // Velocidade em ms
+
+
+$(document).ready(function(){
+
+// Manipula as perguntas
+  $('li.q').on(action, function(){
+
+    // Pega o proximo elemento
+    // Pega o .a do elemento selecionado
+    $(this).next().slideToggle(speed)
+    
+    // Seleciona todas as outras respostas e desliza qualquer resposta aberta
+    .siblings('li.a').slideUp();
+  
+    // pegar a img da pergunta clicada
+    var img = $(this).children('img');
+
+    // remover a classe Rotate de todas as imagens, exceto a ativa
+    $('img').not(img).removeClass('rotate');
+
+    // desativar a classe rotate
+    img.toggleClass('rotate');
+
+  });
+
+});
+</script>
